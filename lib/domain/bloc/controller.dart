@@ -517,9 +517,7 @@ class VideoEditorController extends ChangeNotifier {
       _getCrop(),
       scaleInstruction,
       _getRotation(),
-      isGif
-          ? "fps=${videoFormat is GifExportFormat ? videoFormat.fps : VideoExportFormat.gif.fps}"
-          : "",
+      (videoFormat?.fps?.isFinite ?? false) ? "fps=${videoFormat!.fps}" : "",
     ];
     filters.removeWhere((item) => item.isEmpty);
     return filters.isNotEmpty

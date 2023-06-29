@@ -1,5 +1,6 @@
 class FileFormat {
-  const FileFormat(this.extension);
+  final int? fps;
+  const FileFormat(this.extension, {this.fps});
 
   /// Extension of the file without the dot `.`.
   final String extension;
@@ -13,7 +14,7 @@ class FileFormat {
 /// VideoExportFormat('mkv');
 /// ```
 class VideoExportFormat extends FileFormat {
-  const VideoExportFormat(super.extension);
+  const VideoExportFormat(super.extension, {super.fps});
 
   static const avi = VideoExportFormat('avi');
   static const gif = GifExportFormat();
@@ -24,12 +25,11 @@ class VideoExportFormat extends FileFormat {
 /// To export the video as a GIF file
 /// You can use this class to custom the [fps] of the exported GIF file.
 class GifExportFormat extends VideoExportFormat {
-  const GifExportFormat({this.fps = 10}) : super('gif');
 
   /// The frame rate of the GIF file.
   ///
   /// Defaults to `10`.
-  final int fps;
+  const GifExportFormat() : super('gif', fps: 10);
 }
 
 /// Specify the file format to use when exporting the video cover
